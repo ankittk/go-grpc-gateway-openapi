@@ -1,0 +1,7 @@
+version: v1beta1
+name: buf.build/example/openapiv2
+deps:
+  - buf.build/googleapis/googleapis
+build:
+  roots:
+    - api
