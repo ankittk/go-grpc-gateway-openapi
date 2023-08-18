@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"google.golang.org/grpc/metadata"
 	"log"
 
 	pb "go-grpc-gateway-openapi/api/gen/v1"
@@ -10,6 +11,7 @@ import (
 
 const (
 	address = "localhost:9000" // Update this with the server address
+	token   = "ADD_YOUR_TOKEN" // Update this with your token
 )
 
 func main() {
@@ -21,10 +23,11 @@ func main() {
 
 	c := pb.NewHelloWorldClient(conn)
 
+	ctx := metadata.NewOutgoingContext(context.Background(), metadata.Pairs("authorization", token))
 	// SayHello RPC call
 	name := "Ankit"
 	helloReq := &pb.HelloRequest{Name: name}
-	helloResp, err := c.SayHello(context.Background(), helloReq)
+	helloResp, err := c.SayHello(ctx, helloReq)
 	if err != nil {
 		log.Fatalf("Failed to call SayHello: %v", err)
 	}

@@ -22,3 +22,4 @@ go.work
 .idea
 buf.lock
 api/gen
+googleapis

@@ -15,6 +15,13 @@
   "produces": [
     "application/json"
   ],
+  "securityDefinitions": {
+    "BearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
   "paths": {
     "/v1/postmessage": {
       "post": {
@@ -41,6 +48,13 @@
             "schema": {
               "$ref": "#/definitions/v1PostRequest"
             }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token for authorization",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -69,6 +83,13 @@
           {
             "name": "name",
             "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token for authorization",
             "required": true,
             "type": "string"
           }
